@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>About</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+      <!-- Responsive -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+      <!-- fevicon -->
+      <link rel="icon" href="{{ url_for('static', filename='images/fevicon.png') }}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.min.css') }}">
+      <!-- Tweaks for older IEs -->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+   </head>
+   <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.navbar {
+    background-color: #2c3e50;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.container1 {
+    max-width: 800px;
+    margin: 6rem auto;
+    background: #9febf8; /* Light Blue Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container1:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #2c3e50;
+}
+
+form {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+input[type="file"] {
+    font-size: 1rem;
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 85%;
+    background: white;
+    margin-bottom: 1.5rem;
+    transition: border 0.3s ease-in-out;
+}
+
+input[type="file"]:hover, input[type="file"]:focus {
+    border: 1px solid #3498db;
+}
+
+button {
+    padding: 0.8rem 2rem;
+    background-color: #3498db;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.p1 {
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+
+   </style>
+   <body>
+      <!--header section start -->
+      <div class="header_section header_bg">
+         <div class="container-fluid">
+               <div class="main">
+                  <div class="logo"><a href="/">Leucocyte Classification</a></div>
+                  <div class="menu_text">
+                     <ul>
+                        <div class="togle_">
+                           <div class="menu_main">
+                              <ul>
+                                 <li><a href="/login">Login</a></li>
+                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div id="myNav" class="overlay">
+                           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                           <div class="overlay-content">
+                              <a href="/">Home</a>
+                              <a href="/about">About</a>
+                              <a href="/login">Login</a>
+                              <a href="/register">Register</a>
+                           </div>
+                        </div>
+                        <span class="navbar-toggler-icon"></span>
+                        <span onclick="openNav()"><img src="{{ url_for('static', filename='images/toogle-icon.png') }}" class="toggle_menu" alt="Toggle Menu"></span>
+                        <span onclick="openNav()"><img src="{{ url_for('static', filename='images/toogle-icon1.png') }}" class="toggle_menu_1" alt="Toggle Menu 1"></span>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <!-- banner section start -->
+            <div class="container">
+               <div class="about_taital_main">
+                  <h2 class="about_tag">Leucocyte Classification</h2>
+                  <div class="about_menu">
+                     <ul>
+                        <li><a href="/">Home</a></li>
+                        <li>About</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         <!-- banner section end -->
+      </div>
+      <!-- header section end -->
+      <!-- about section start -->
+      <div class="about_section layout_padding">
+         <div class="container1">
+            <h1>Upload Image for Detection</h1>
+            {% if error %}
+                  <p class="error">{{ error }}</p>
+            {% endif %}
+            <form action="/predict_page" method="POST" enctype="multipart/form-data">
+                  <input type="file" name="image" accept="image/*" required>
+                  <button type="submit">Upload Image</button>
+            </form>
+            <p class="p1">Upload an image for Leucocyte Classification.</p>
+         </div>
+      </div>
+      <!-- about section end -->
+      
+      <!-- copyright section start -->
+      <div class="copyright_section" style="background-color: black;">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <p class="copyright_text" style="color: white;">© 2025 Leucocyte Classification.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <!-- javascript --> 
+      <script src="js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+              
+         $(".zoom").hover(function(){
+              
+         $(this).addClass('transition');
+         }, function(){
+              
+         $(this).removeClass('transition');
+         });
+         });
+      </script> 
+      <script>
+         function openNav() {
+         document.getElementById("myNav").style.width = "100%";
+         }
+         function closeNav() {
+         document.getElementById("myNav").style.width = "0%";
+         }
+      </script>  
+   </body>
+</html>
